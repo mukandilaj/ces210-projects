@@ -3,7 +3,7 @@ using System;
 public class Entry
 {
     // Member variables
-    public DateTime _date = DateTime.Now;
+    public string _date = DateTime.Now.ToShortDateString();
     public string _prompt = "";
     public string _response = "";
 
@@ -16,6 +16,8 @@ public class Entry
     // Method
     public void Display()
     {
-        
+        Console.WriteLine($"Date: {_date} - Prompt: {_prompt}");
+        Console.WriteLine($"{_response}");
+        Console.WriteLine();
     }
 }
