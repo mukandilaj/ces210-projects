@@ -33,7 +33,7 @@ public class Journal
         {
             foreach (Entry entry in _entries)
             {
-                outputFile.WriteLine($"{entry._date} | {entry._prompt} | {entry._response}");
+                outputFile.WriteLine($"{entry._date} | {entry._mood} | {entry._prompt} | {entry._response}");
             }
         }
     }
@@ -47,10 +47,12 @@ public class Journal
         {
             string[] parts = line.Split('|');
             string date = parts[0].Trim();
-            string prompt = parts[1].Trim();
-            string response = parts[2].Trim();
+            string mood = parts[1].Trim();
+            string prompt = parts[2].Trim();
+            string response = parts[3].Trim();
             Entry entry = new Entry();
             entry._date = date;
+            entry._mood = mood;
             entry._prompt = prompt;
             entry._response = response;
             _entries.Add(entry);

@@ -28,6 +28,8 @@ class Program
                 Console.WriteLine(entry._prompt);
                 Console.Write("> ");
                 entry._response = Console.ReadLine();
+                Console.Write("Mood: ");
+                entry._mood = Console.ReadLine();
                 journal.AddEntry(entry);
             }
 
