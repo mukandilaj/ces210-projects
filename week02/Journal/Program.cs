@@ -1,3 +1,5 @@
+// Showing creativity: save other information in the journal entry.
+
 using System;
 
 class Program
