@@ -21,15 +21,43 @@ public class Scripture
     // Methods
     public void HideRandomWords(int numberToHide)
     {
-        
+        Random randomGenerator = new Random();
+        int hiddenCount = 0;
+        while (hiddenCount < numberToHide)
+        {
+            int j = randomGenerator.Next(0, _words.Count);
+            if (!_words[j].IsHidden())
+            {
+                _words[j].Hide();
+                hiddenCount ++;
+            }
+            if (IsCompletelyHidden())
+            {
+                break;
+            }
+            
+        }
     }
     public string GetDisplayText()
     {
-        
+        string displayText = _reference.GetDisplayText();
+        foreach (Word word in _words)
+        {
+            string displayWord = word.GetDisplayText();
+            displayText += " " + displayWord;
+        }
+        return displayText;
     }
     public bool IsCompletelyHidden()
     {
-        
+        foreach (Word word in _words)
+        {
+            if (! word.IsHidden())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

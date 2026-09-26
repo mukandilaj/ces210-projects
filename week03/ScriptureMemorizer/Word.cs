@@ -20,14 +20,21 @@ public class Word
     }
     public void Show()
     {
-        
+        _isHidden = false;
     }
     public bool IsHidden()
     {
-        
+        return _isHidden;
     }
     public string GetDisplayText()
     {
-        
+        if (_isHidden == false)
+        {
+            return _text;
+        }
+        else
+        {
+            return new string('_', _text.Length);
+        }
     }
 }
