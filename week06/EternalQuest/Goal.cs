@@ -1,6 +1,6 @@
 using System;
 
-public class Goal
+public abstract class Goal
 {
     // Member variables
     private string _shortName;
@@ -32,23 +32,15 @@ public class Goal
     }
 
     // Methods
-    public virtual void RecordEvent()
-    {
-        
-    }
+    public abstract void RecordEvent();
 
-    public virtual bool IsComplete()
-    {
-        return false;
-    }
+    public abstract bool IsComplete();
 
     public virtual string GetDetailsString()
     {
-        return "";
+        string status = IsComplete() ? "[X]" : "[]";
+        return $"{status} {_shortName} ({_description})";
     }
 
-    public virtual string GetStringRepresentation()
-    {
-        return "";
-    }
+    public abstract string GetStringRepresentation();
 }
