@@ -35,4 +35,13 @@ public class ChecklistGoal : Goal
     {
         return $"ChecklistGoal:{GetShortName()},{GetDescription()},{GetPoints()},{_amountCompleted},{_target},{_bonus}";
     }
+
+    public int GetEarnedPoints()
+    {
+        if (_amountCompleted == _target)
+        {
+            return GetPoints() + _bonus;
+        }
+        return GetPoints();
+    }
 }

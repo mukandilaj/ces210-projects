@@ -67,6 +67,7 @@ public class GoalManager
     public void DisplayPlayerInfo()
     {
         Console.WriteLine($"You have {_score} points.");
+        Console.WriteLine($"Level: {GetLevel()}");
     }
 
     public void ListGoalNames()
@@ -130,9 +131,19 @@ public class GoalManager
         Console.Write("Which goal did you accomplish? ");
         int choice = int.Parse(Console.ReadLine());
         Goal selectedGoal = _goals[choice - 1];
+        int earnedPoints;
         selectedGoal.RecordEvent();
-        _score += selectedGoal.GetPoints();
-        Console.WriteLine($"Congratulations! You have earned {selectedGoal.GetPoints()} points!");
+        if (selectedGoal is ChecklistGoal)
+        {
+            ChecklistGoal goal = (ChecklistGoal)selectedGoal;
+            earnedPoints = goal.GetEarnedPoints();
+        }
+        else
+        {
+            earnedPoints = selectedGoal.GetPoints();
+        }
+        _score += earnedPoints;
+        Console.WriteLine($"Congratulations! You have earned {earnedPoints} points!");
         Console.WriteLine($"You now have {_score} points.");
     }
 
@@ -192,5 +203,9 @@ public class GoalManager
             }
             
         } 
+    }
+    public int GetLevel()
+    {
+        return (_score / 1000) + 1;
     }
 }
